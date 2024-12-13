@@ -4,13 +4,68 @@
 <head>
     <meta charset="UTF-8">
     <title>Перенаправление...</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            text-align: center;
+        }
+
+        a {
+            color: #005bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #004a99;
+        }
+
+        .timer {
+            font-size: 2em;
+            margin: 20px 0;
+        }
+    </style>
     <script type="text/javascript">
-        window.location.href = "https://web.telegram.org/k/";
+        let countdown = 10;
+
+        function updateTimer() {
+            document.getElementById('timer').textContent = countdown;
+            if (countdown === 0) {
+                window.location.href = "https://web.telegram.org/k/";
+            } else {
+                countdown--;
+                setTimeout(updateTimer, 1000);
+            }
+        }
+
+        window.onload = updateTimer;
     </script>
 </head>
 
 <body>
-    <p>Если вас не перенаправили автоматически, перейдите по этой <a href="https://web.telegram.org/k/">ссылке на Telegram Web</a>.</p>
+    <div class="container">
+        <p>Вы будете перенаправлены на сайт Telegram через <span id="timer" class="timer">10</span> секунд.</p>
+        <p>Тем временем, вы можете подписаться на Telegram канал автора: <a href="https://t.me/rokibio" target="_blank">@rokibio</a></p>
+        <p>Если вас не перенаправили автоматически, перейдите по этой <a href="https://web.telegram.org/k/">ссылке на Telegram Web</a>.</p>
+    </div>
 </body>
 
 </html>
+
